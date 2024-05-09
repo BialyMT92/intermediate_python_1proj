@@ -183,15 +183,5 @@ def limit(iterator, n=None):
     :yield: The first (at most) `n` values from the iterator.
     """
     # TODO: Produce at most `n` values from the given iterator.
-    s = slice(n)
-    start = 0 if s.start is None else s.start
-    stop = None if s.stop is None or s.stop == 0 else s.stop
-    step = 1 if s.step is None else s.step
-    if start < 0 or (stop is not None and stop < 0) or step <= 0:
-        raise ValueError
-    indices = itertools.count() if stop is None else range(max(stop, start))
-    next_i = start
-    for i, element in zip(indices, iterator):
-        if i == next_i:
-            yield element
-            next_i += step
+    n = n if n != 0 else None
+    return itertools.islice(iterator, n)

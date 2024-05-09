@@ -14,7 +14,6 @@ You'll edit this file in Task 2.
 """
 import csv
 import json
-
 from models import NearEarthObject, CloseApproach
 
 
@@ -24,8 +23,6 @@ def load_neos(neo_csv_path='data/neos.csv'):
     :param neo_csv_path: A path to a CSV file containing data about near-Earth objects.
     :return: A collection of `NearEarthObject`s.
     """
-    # TODO: Load NEO data from the given CSV file.
-
     neo_collection = []
 
     with open(neo_csv_path, 'r') as infile:
@@ -41,8 +38,6 @@ def load_approaches(cad_json_path='data/cad.json'):
     :param cad_json_path: A path to a JSON file containing data about close approaches.
     :return: A collection of `CloseApproach`es.
     """
-    # TODO: Load close approach data from the given JSON file.
-
     app_collection = []
 
     with open(cad_json_path, 'r') as infile:

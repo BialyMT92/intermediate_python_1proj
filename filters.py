@@ -18,6 +18,7 @@ You'll edit this file in Tasks 3a and 3c.
 """
 import operator
 import helpers
+import itertools
 
 
 class UnsupportedCriterionError(NotImplementedError):
@@ -39,6 +40,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -181,4 +183,15 @@ def limit(iterator, n=None):
     :yield: The first (at most) `n` values from the iterator.
     """
     # TODO: Produce at most `n` values from the given iterator.
-    return iterator
+    s = slice(n)
+    start = 0 if s.start is None else s.start
+    stop = None if s.stop is None or s.stop == 0 else s.stop
+    step = 1 if s.step is None else s.step
+    if start < 0 or (stop is not None and stop < 0) or step <= 0:
+        raise ValueError
+    indices = itertools.count() if stop is None else range(max(stop, start))
+    next_i = start
+    for i, element in zip(indices, iterator):
+        if i == next_i:
+            yield element
+            next_i += step

@@ -35,7 +35,7 @@ class NearEarthObject:
     def __init__(self, **info):
         """Create a new `NearEarthObject`.
 
-        :param info: A dictionary of excess keyword arguments supplied to the constructor.
+        :param info: A dictionary of all keyword arguments supplied to the constructor.
         """
         self.designation = info['pdes']
         self.name = None if info['name'] == '' else info['name']
@@ -79,14 +79,13 @@ class CloseApproach:
     def __init__(self, **info):
         """Create a new `CloseApproach`.
 
-        :param info: A dictionary of excess keyword arguments supplied to the constructor.
+        :param info: A dictionary of all keyword arguments supplied to the constructor.
         """
         self._designation = info['des']
         self.time = cd_to_datetime(info['cd'])
         self.distance = float(info['dist'])
         self.velocity = float(info['v_rel'])
 
-        # Create an attribute for the referenced NEO, originally None.
         self.neo = None
 
     @property

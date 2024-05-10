@@ -71,36 +71,102 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
 class DateCAFilter(AttributeFilter):
+    """Filter of Close Approach database by its attribute: CA.datetime.
+
+    :param AttributeFilter: class of AttributeFilter
+    """
+
     @classmethod
     def get(cls, approach):
+        """Get an attribute of interest from a close approach.
+
+        Concrete subclasses must override this method to get an attribute of
+        interest from the supplied `CloseApproach`.
+
+        :param approach: A `CloseApproach` on which to evaluate this filter.
+        :return: The value of an attribute of interest, comparable to `self.value` via `self.op`.
+        """
         return approach.time.date()
 
 
 class DistanceCAFilter(AttributeFilter):
+    """Filter of Close Approach database by its attribute: CA.distance.
+
+    :param AttributeFilter: class of AttributeFilter
+    """
+
     @classmethod
     def get(cls, approach):
+        """Get an attribute of interest from a close approach.
+
+        Concrete subclasses must override this method to get an attribute of
+        interest from the supplied `CloseApproach`.
+
+        :param approach: A `CloseApproach` on which to evaluate this filter.
+        :return: The value of an attribute of interest, comparable to `self.value` via `self.op`.
+        """
         return approach.distance
 
 
 class VelocityCAFilter(AttributeFilter):
+    """Filter of Close Approach database by its attribute: CA.velocity.
+
+    :param AttributeFilter: class of AttributeFilter
+    """
+
     @classmethod
     def get(cls, approach):
+        """Get an attribute of interest from a close approach.
+
+        Concrete subclasses must override this method to get an attribute of
+        interest from the supplied `CloseApproach`.
+
+        :param approach: A `CloseApproach` on which to evaluate this filter.
+        :return: The value of an attribute of interest, comparable to `self.value` via `self.op`.
+        """
         return approach.velocity
 
 
 class DiameterNeoFilter(AttributeFilter):
+    """Filter of Close Approach database by its attribute: CA.neo.distance.
+
+    :param AttributeFilter: class of AttributeFilter
+    """
+
     @classmethod
     def get(cls, approach):
+        """Get an attribute of interest from a close approach.
+
+        Concrete subclasses must override this method to get an attribute of
+        interest from the supplied `CloseApproach`.
+
+        :param approach: A `CloseApproach` on which to evaluate this filter.
+        :return: The value of an attribute of interest, comparable to `self.value` via `self.op`.
+        """
         return approach.neo.diameter
 
 
 class HazardousFilter(AttributeFilter):
+    """Filter of Close Approach database by its attribute: CA.neo.hazardous.
+
+    :param AttributeFilter: class of AttributeFilter
+    """
+
     @classmethod
     def get(cls, approach):
+        """Get an attribute of interest from a close approach.
+
+        Concrete subclasses must override this method to get an attribute of
+        interest from the supplied `CloseApproach`.
+
+        :param approach: A `CloseApproach` on which to evaluate this filter.
+        :return: The value of an attribute of interest, comparable to `self.value` via `self.op`.
+        """
         return approach.neo.hazardous
 
 
